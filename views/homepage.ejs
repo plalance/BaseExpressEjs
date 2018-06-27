@@ -6,3 +6,17 @@
 <p>Passage de tablea à la vue, + boucle dans template EJS (ici 3 fois):</p>
 <a href="/compter/3">/compter/3</a>
 
+<h3>Todolist (en session)</h3>	
+<ul>
+
+<% todos.forEach(function(todo, index) { %>
+	
+	<li><a href="/remove_todo/<%= todo.id %>">✘</a> <%= todo.name %></li>
+
+<% }); %>
+</ul>
+
+<form action="/add_todo" method="POST">
+	<input type="text" name="todoName">
+	<input type="submit" value="save">	
+</form>
