@@ -18,6 +18,8 @@ io.sockets.on('connection', function (socket) {
 
     // On appelle l'evenement client "message"
     socket.emit('message', { content: 'Vous êtes bien connecté !', importance: '1' });
+    // On notrifie TOUS LES CLIENTS avec le broadcast
+    socket.broadcast.emit('message', { content: 'Un autre user est arrivé', importance: '2' });
 
     // Quand le serveur reçoit un signal de type "message" du client    
     socket.on('message', function (message) {

@@ -18,8 +18,21 @@
             var socket = io.connect('http://localhost:8080');
 
             // Evenement "message", est appelé depuis le serveur
+            // Selon importance alert ou console.log
             socket.on('message', function(message) {
-                alert('Le serveur a un message pour vous : ' + message.content);
+                switch(message.importance){
+                    case 1:
+                        alert('Le serveur a un message pour vous : ' + message.content);
+                    break;
+
+                    case 2:
+                        console.log('Le serveur a un message pour vous : ' + message.content);
+                    break;
+
+                    default:
+                        console.log('Le serveur a un message pour vous : ' + message.content);
+                    break;
+                }
             });
 
             $('#notify').click(function () {
