@@ -19,8 +19,7 @@ app.get('/etage/1/chambre', function(req, res) {
 
 // Exemple route dynamique
 app.get('/etage/:etagenum/chambre', function(req, res) {
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Vous êtes à la chambre de l\'étage n°' + req.params.etagenum);
+    res.render('chambre.ejs', {etage: req.params.etagenum});
 });
 
 // 404 par défaut
