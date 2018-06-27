@@ -4,10 +4,11 @@
   "description": "Exemple de base avec framework Express",
   "main": "app.js",
   "dependencies": {
+    "body-parser": "~1.10.1",
+    "cookie-session": "~1.1.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "cookie-session": "~1.1.0",
-    "body-parser": "~1.10.1"
+    "socket.io": "^2.1.1"
   },
   "devDependencies": {},
   "scripts": {
