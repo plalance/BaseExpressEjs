@@ -4,8 +4,8 @@ Petit projet pour mon apprentissage du développement d'application avec Node.js
 
 ## Modules
 
-- Framework Express pour simplifier la gestion HTTP / Routes / Requests
-- Moteur de template EJS (Embedded JavaScript)
+- Framework Express pour simplifier la gestion HTTP / Routes / Requests (doc: http://expressjs.com/en/api.html)
+- Moteur de template EJS (Embedded JavaScript) (doc: http://ejs.co/#install)
 
 ## Installation
 
