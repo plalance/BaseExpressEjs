@@ -1,4 +1,4 @@
-#Informations
+##Informations
 
 Petit projet pour mon apprentissage du développement d'applciation avec Nde.js
 
