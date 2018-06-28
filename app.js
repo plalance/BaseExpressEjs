@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 /* S'il n'y a pas de todolist dans la session,
 on en crée une vide sous forme d'array avant la suite */
 app.use(function(req, res, next){
-    if (typeof(req.session.todos) == 'undefined') {
+    if (typeof(req.session.todos) === 'undefined') {
         req.session.todos = [];
     }
     next();

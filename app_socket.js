@@ -23,8 +23,24 @@ io.sockets.on('connection', function (socket) {
 
     // Quand le serveur reçoit un signal de type "message" du client    
     socket.on('message', function (message) {
-        console.log('Un client me parle ! Il me dit : ' + message);
+        console.log(socket.pseudo + ' me parle ! Il me dit : ' + message);
         socket.emit('message', { content: 'Serveur : Bien reçu la notif :)', importance: '1' });
+    });
+
+    // Dès qu'on nous donne un pseudo, on le stocke en variable de session
+    socket.on('petit_nouveau', function(pseudo) {
+        socket.pseudo = pseudo;
+        socket.emit('new_user', pseudo);
+        socket.broadcast.emit('new_user', pseudo);
+    });
+
+    // Dès qu'on nous donne un pseudo, on le stocke en variable de session
+    socket.on('send_message', function(message) {
+        var mess = {
+            content: message,
+            author: socket.pseudo
+        };
+        socket.broadcast.emit('new_message', mess);
     });
 });
 

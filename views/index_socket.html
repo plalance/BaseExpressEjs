@@ -9,13 +9,25 @@
         <h1>Socket Io</h1>
 
         <p><input type="button" value="notifier le serveur" id="notify"/></p>
+        <div>
+            <textarea name="message_content" id="message_content" cols="30" rows="10"></textarea>
+            <input type="submit" id="send" value="envoyer message">
+        </div>
+        <h2>Chat</h2>
+        <div class="content">
 
+        </div>
 
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
 
         <script>
             var socket = io.connect('http://localhost:8080');
+
+            // On demande le pseudo au visiteur...
+            var pseudo = prompt('Quel est votre pseudo ?');
+            // Et on l'envoie avec le signal "petit_nouveau" (pour le différencier de "message")
+            socket.emit('petit_nouveau', pseudo);
 
             // Evenement "message", est appelé depuis le serveur
             // Selon importance alert ou console.log
@@ -35,8 +47,24 @@
                 }
             });
 
+            socket.on('new_message', function(message) {
+            $('.content').append('<p>'+message.author+' : '+message.content+'</p>');
+                console.log(message);
+            });
+            socket.on('new_user', function(pseudo) {
+                console.log(pseudo);
+                $('.content').append('<p>'+pseudo+'Vient d\'arriver</p>');
+            });
+
             $('#notify').click(function () {
                 socket.emit('message', 'Salut serveur, ça va ?');
+            });
+
+            $('#send').click(function () {
+                var mess = $('#message_content').val();
+                socket.emit('send_message', mess);
+                $('.content').append('<p> Vous :'+mess+'</p>');
+                $('#message_content').val('').focus();
             });
         </script>
     </body>
